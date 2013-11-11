@@ -1,0 +1,8 @@
+HMC Research 07
+True, False, and X are data, Label is text, and lines are dividers
+Divider 0 Blue
+True 1 Brown
+False 2 Green
+X 3 Pink
+Label 4 Orange
+Other 5 Red

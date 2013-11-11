@@ -1,0 +1,92 @@
+**********
+* SvmWGL *
+**********
+
+Note that this information is also available on the wiki.
+If you have any questions, feel free to send me an email: abakalov@cs.hmc.edu
+
+*******
+Usage *
+*******
+The executable file is called SeparateText.exe and there are three 
+main options (explanation of flags/options follows):
+
+(1) For each possible svm type, kernel type (supported by libsvm version 2.84) 
+and classification (e.g. wire vs. gate),  the command below creates a training file, 
+does training, and inference. Note that if you are using the -s flag then dirContainingFiles 
+should contain correctly labeled files. If the -l option is used then any files 
+could be passed since the labels are removed. (see explanation of flags)
+
+SeparateText.exe -a -t dirWithTrainFiles -i dirContainingFiles [-l] -s finalResults.txt
+
+(2) Creates a training file, does training, and inference.
+
+SeparateText.exe -f trainFile.train -t dirContainingTrainFiles -i dirContainingFiles [-l] -s finalResults.txt
+
+(3) Takes a directory containing files created by the UCR's clustering algorithm 
+and a directory containing files labeled by RunCRF (inference mode). Then it 
+performs corrections to the labels.
+
+SeparateText.exe -g dirContainingFilesFromClustAlg dirContainingFilesFromCRF
+
+**********************************
+* Explanations of flags/options: *
+**********************************
+
+-h or -help or --help prints the help info.
+
+-f specifies the name of the train file created by the program.
+
+-t specifies that we are in training mode and is followed by a directory containing training files.
+
+-i specifies that we are in inference mode and is followed by a directory containing files as described
+   in the section above.
+
+-l specifies that we are in labeling mode.
+
+-s writes statistical data to the file following the flag.
+
+-a specifies that we are in "autopilot" mode i.e. we are testing all possible combinations of svm 
+   types and kernel types as written above.
+
+-g makes corrections using the clustering algorithm from UC Riverside
+
+Note that you can use -l and -s one at a time.
+
+*****************
+* How to modify *
+*****************
+
+    * If you want to change the svm and kernel types being tested, modify the nested 
+      for loops in the region "autopilot" in Main
+    * If you want to change the algorithm for making corrections to the sketches labeled 
+      by the CRF, modify the code in doCorrectionsToSketch(). 
+
+*********************
+* State of research *
+*********************
+
+    * You can find detailed information about the research done during the summer of 2007 
+      here: AntonBakalovLog. More specifically, see July 17 and July 18
+    * Using this program (autopilot mode), all the kernel and svm types in libsvm version 
+      2.84 were tested. All the results are available on the wiki under July17 and July 18. 
+      The best way that the CRF and SVM could be combined was: doing a Gate-Nongate classification 
+      with the CRF and then Wire-Label using the SVM. The obtained accuracy was achieved with svm 
+      type C-SVC and kernel type linear - Gate: 76.360 %, Nongate: 83.146%, Wire: 84.800%, Label: 84.253%, 
+      and Overall: 72.142%. Currently we are using a compiled version of the latest release (2.84) 
+      of the svm library to do the training, and we use the 2.6 version to do the inference (since 
+      it was already ported to C#). Once we port it we should test it again since there might be some 
+      compatibility issues. The exe is in Code\Recognition\SvmWGL\bin\Debug\svmtrain.exe. 
+
+************************
+* Important next steps *
+************************
+
+    * Integrate the algorithm from UC Riverside once we have it.
+    * Port libsvm version 2.84 into C# so that we don't have to use the svmtrain.exe OR 
+      use access the functions we need via a dll, which is easier and faster. 
+
+************
+* Bug list *
+************
+ 

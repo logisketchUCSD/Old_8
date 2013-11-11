@@ -1,0 +1,77 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E601102F-FA56-42B2-A333-E115E2E41C45}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeparateText</RootNamespace>
+    <AssemblyName>SeparateText</AssemblyName>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CreateTrainingModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Util\ConverterXML\ConverterXML.csproj">
+      <Project>{165389E7-414D-49BB-B958-4B521AA1D452}</Project>
+      <Name>ConverterXML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Util\Sketch\Sketch.csproj">
+      <Project>{84AE0BC9-B169-4B44-B320-4825D027BD2C}</Project>
+      <Name>Sketch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Featurefy\Featurefy.csproj">
+      <Project>{C2043A9A-A7CA-43AC-A4DF-318A32BCB165}</Project>
+      <Name>Featurefy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recognizers\Recognizers.csproj">
+      <Project>{3B43E303-2C6B-452D-ABCC-BE0B94410A63}</Project>
+      <Name>Recognizers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Svm\Svm\Svm.csproj">
+      <Project>{E880953B-FF08-407B-8617-04E95B36AE84}</Project>
+      <Name>Svm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
